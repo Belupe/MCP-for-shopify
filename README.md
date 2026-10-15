@@ -20,9 +20,11 @@ Navegador: inicias sesión en Shopify y apruebas los permisos
 
 ## 1. Crear tu app de Shopify (una sola vez, ~5 min)
 
-Shopify exige que cualquier integración sea una "app" con su Client ID y su secreto. Es gratis.
+Shopify exige que cualquier integración sea una "app" con su Client ID y su secreto. **Es gratis y no necesitas cuenta de Partners**: si eres el dueño o la dueña de la tienda, la creas desde tu propio admin. Esta app es privada (solo para tu tienda), no se publica en la App Store de Shopify.
 
-1. Entra en el **Dev Dashboard** de Shopify: <https://dev.shopify.com/dashboard> (con la misma cuenta que administra la tienda, o como *Partner*).
+1. En el admin de tu tienda ve a **Configuración → Apps → Desarrollar apps** y pulsa **Build apps in Dev Dashboard** (se abre <https://dev.shopify.com/dashboard> ya vinculado a tu tienda).
+   - Desde el 1 de enero de 2026 Shopify ya no permite crear apps nuevas directamente en el admin («apps personalizadas» antiguas); este es el camino actual.
+   - Si no ves la opción, necesitas ser el dueño de la tienda o tener el permiso de colaborador «Desarrollar apps».
 2. **Create app** → ponle un nombre, por ejemplo `Claude MCP`.
 3. En la configuración de la versión de la app (**Versions → Create version**, o *Configuration* según tu panel):
    - **App URL**: `http://localhost:3457`
@@ -32,7 +34,9 @@ Shopify exige que cualquier integración sea una "app" con su Client ID y su sec
    - Si aparece la opción **Use legacy install flow**, actívala (el MCP usa el flujo OAuth clásico).
    - Guarda y **publica (Release)** la versión.
 4. En **Settings** copia el **Client ID** y el **Client secret**.
-5. **Distribución**: si la tienda no pertenece a la misma organización que la app, en *Distribution* elige **Custom distribution** e indica el dominio `*.myshopify.com` de la tienda.
+5. **Instalación**: si la app se creó desde tu tienda, ya puede instalarse en ella; el propio `shopify_login` hace la instalación. Si en tu panel aparece *Distribution*, elige **Custom distribution** e indica el dominio `*.myshopify.com` de tu tienda.
+
+> **¿Y la cuenta de Partners?** Solo hace falta si gestionas tiendas de otras personas (agencias, freelancers) o quieres tiendas de desarrollo gratuitas para pruebas. También es gratis. Para conectar tu propia tienda, crea la app desde tu admin como se explica arriba: se han reportado casos en los que una app creada desde una organización de Partners no se podía instalar en una tienda de cliente sin plan Plus.
 
 > Si cambias el puerto con `SHOPIFY_REDIRECT_PORT`, cambia también la Redirect URL de la app.
 
